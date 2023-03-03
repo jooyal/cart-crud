@@ -4,12 +4,12 @@
             <table style="width: 100%;">
                 <thead style="background-color: greenyellow;">
                     <th>Sl.No.</th>
-                    <th>Product Name</th>
+                    {{!-- <th>Product Name</th>
                     <th>Phone</th>
-                    <th>Email</th>
+                    <th>Email</th> --}}
                     <th>Color</th>
                     <th>Size</th>
-                    <th>Amount</th>
+                    {{!-- <th>Amount</th> --}}
                     <th>Action</th>
                 </thead>
                 <tbody>
@@ -19,7 +19,7 @@
                         <td>
                             {{inc @index}}
                         </td>
-                        <td>
+                        {{!-- <td>
                             {{this.name}}
                         </td>
                         <td>
@@ -27,16 +27,16 @@
                         </td>
                         <td>
                             {{this.email}}
-                        </td>
+                        </td> --}}
                         <td>
                             {{this.color}}
                         </td>
                         <td>
                             {{this.size}}
                         </td>
-                        <td>
+                        {{!-- <td>
                             {{this.amount}}
-                        </td>
+                        </td> --}}
                         <td>
                             <a href="/edit-product/{{this._id}}" class="btn btn-warning">Edit</a>
                         </td>
