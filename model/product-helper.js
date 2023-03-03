@@ -11,11 +11,11 @@ module.exports = {
             if(response.acknowledged === true){
                 return({ status:true, message:'Products inserted successfully!'})
             }else {
-                throw new Error({message:"Couldn't insert the products."});
+                throw new Error("Couldn't insert the products.");
             }
 
         } catch (error) {
-            throw new Error({message:error})
+            throw new Error(error)
         }
     },
 
@@ -23,14 +23,14 @@ module.exports = {
         try {
             let products = await db.get().collection(PRODUCT_COLLECTION).find().toArray()
             
-            if(products){
+            if(products.length !== 0){
                 return({status:true, data:products})
             }else {
-                throw new Error({message:'No products exist in database'})
+                throw new Error('No products exist in database')
             }
             
         } catch (error) {
-            throw new Error({message:error})
+            throw new Error(error)
         }
     },
 
@@ -41,12 +41,12 @@ module.exports = {
                 return({status:true, data:details})
 
             }else {
-                throw new Error({status:false, message:'Product with passed id does not exist in database'})
+                throw new Error('Product with passed id does not exist in database')
             }
             
         } catch (error) {
             console.log(error);
-            throw new Error({message:error})
+            throw new Error(error)
         }
     },
 
@@ -59,11 +59,11 @@ module.exports = {
                 return({status:true, message:'Amount updated successfully!'})
 
             }else {
-                throw new Error({status:false, message:'Could not update the amount'})
+                throw new Error('Could not update the amount')
             }
             
         } catch (error) {
-            throw new Error({message:error})
+            throw new Error(error)
         }
     }
 }

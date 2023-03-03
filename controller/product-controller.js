@@ -10,7 +10,14 @@ module.exports = {
 
     postAddProduct : async (req, res)=>{
         try {
-            // console.log(req.body);
+
+            if(!req.body.productName || !req.body.shopMobile || !req.body.shopEmail || !req.body.productAmount){
+                res.status(200).render('add-product', { title: 'Add Product | Ocean Technologies Task', addProductError: 'Fill all fields to continue.' });
+
+            } else if ((req.body.shopMobile).length !== 10) {
+                res.status(200).render('add-product', { title: 'Add Product | Ocean Technologies Task', addProductError: 'Enter a valid phone number to continue.' });
+
+            } else {
 
                 const productCombinations = [];
 
@@ -36,9 +43,11 @@ module.exports = {
                 }else {
                     res.status(500).render('error', {error})
                 }
+            }
 
         } catch (error) {
-            res.status(500).render('error', {error})
+            console.error(error);
+            res.send({status:false, message:'Could not add the product to the database.'})
         }
     },
 
@@ -47,13 +56,11 @@ module.exports = {
             let products = await fetchAllProducts()
             if(products.status){
                 res.render('all-products', { title: 'All Products | Ocean Technologies Task', products:products.data });
-
-            }else {
-                res.status(500).render('error', {error})
             }
             
         } catch (error) {
-            res.status(500).render('error', {error})
+            console.error(error);
+            res.send({status:false, message:'Could not get products from database.'})
         }
     },
 
@@ -66,29 +73,31 @@ module.exports = {
                 res.render('edit-product', { title: 'Edit Product | Ocean Technologies Task', product:product.data });
 
             }else {
-                res.send({message:'product with product id not found'})
+                res.send({status:false, message:'product with product id not found'})
             }
 
         } catch (error) {
-            res.status(500).render('error', {error})
+            console.error(error);
+            res.send({status:false, message:'Could not edit the product'})
         }
     },
 
     postEditProduct : async (req, res)=>{
         try {
             let productId = req.body.productId
-            let newAmount = req.body.amount
+            let newAmount = req.body.productAmount
 
             let response = await updateProductAmount(productId, newAmount)
 
             if(response.status){
                 res.redirect('/all-products')
             }else {
-                res.send({message:'Could not update the amount for the product.'})
+                res.send({status:false, message:'Could not update the amount for the product.'})
             }
             
         } catch (error) {
-            res.status(500).render('error', {error})
+            console.error(error);
+            res.send({status:false, message:'Could not update the amount for the product.'})
         }
     }
 }

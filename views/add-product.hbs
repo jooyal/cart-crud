@@ -1,7 +1,6 @@
     <section class="wrapper mt-5">
 		<div class="container d-flex">
 			<div class="col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4 text-center">
-				
 
 				<form style="background-color: rgb(255, 255, 255);" class="rounded shadow p-5" method="post" action="/">
 					<h4 class="text-dark fw-bolder fs-4 mb-5">ADD NEW PRODUCT</h4>
@@ -9,23 +8,21 @@
 					<div class="text-danger" id="serverErrMsg">{{addProductError}}</div>
 					
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingProductName" name="productName" placeholder="Product-Name" >
+                        <input type="text" class="form-control" id="floatingProductName" name="productName" placeholder="Product-Name" required>
                         <label for="floatingProductName">Product Name</label>
                     </div>
                     <div class="form-floating mb-3">
-						<input type="number" class="form-control" id="floatingPhoneInput" name="shopMobile" oninput="validateSignupPhone()" placeholder="9876543210" >
+						<input type="number" class="form-control" id="floatingPhoneInput"  name="shopMobile" placeholder="9876543210" required>
 						<label for="floatingPhoneInput">Phone No.</label>
 						<div class="text-danger" id="phoneNoErr"></div>
 					</div>
 					<div class="form-floating mb-3">
-						<input type="email" class="form-control" id="floatingEmailInput" name="shopEmail" oninput="validateSignupEmail()" placeholder="name@example.com" >
+						<input type="email" class="form-control" id="floatingEmailInput" name="shopEmail" placeholder="name@example.com" required>
 						<label for="floatingEmailInput">Email Address</label>
-						<div class="text-danger" id="emailErr"></div>
 					</div>
                     <div class="form-floating mb-3">
-						<input type="number" class="form-control" id="floatingAmountInput" name="productAmount" placeholder="0" >
+						<input type="number" class="form-control" id="floatingAmountInput" name="productAmount" placeholder="0" required>
 						<label for="floatingAmountInput">Amount</label>
-						<div class="text-danger" id="productAmountErr"></div>
 					</div>
 					
 					
