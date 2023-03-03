@@ -1,0 +1,49 @@
+<div class="container">
+            <table style="width: 100%;">
+                <thead style="background-color: greenyellow;">
+                    <th>Sl.No.</th>
+                    <th>Product Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Color</th>
+                    <th>Size</th>
+                    <th>Amount</th>
+                    <th>Action</th>
+                </thead>
+                <tbody>
+                    {{#each products}}
+                    <tr class="align-middle alert border-bottom">
+
+                        <td>
+                            {{inc @index}}
+                        </td>
+                        <td>
+                            {{this.name}}
+                        </td>
+                        <td>
+                            {{this.phone}}
+                        </td>
+                        <td>
+                            {{this.email}}
+                        </td>
+                        <td>
+                            {{this.color}}
+                        </td>
+                        <td>
+                            {{this.size}}
+                        </td>
+                        <td>
+                            {{this.amount}}
+                        </td>
+                        <td>
+                            <a href="/edit-product/{{this._id}}" class="btn btn-warning">Edit</a>
+                        </td>
+
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+    </div>
+
+
+    

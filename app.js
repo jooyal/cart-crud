@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const productRouter = require('./routes/product');
+const hbs = require('express-handlebars')
 const db = require('./model/dbConnection/connection')
 
 const app = express();
@@ -12,6 +13,11 @@ const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+app.engine('hbs',hbs.engine({extname:'hbs',defaultLayout:'layout',layoutsDir:(__dirname+'/views/layout/'),helpers: {
+  inc: function (value, options) {
+      return parseInt(value) + 1;
+    }
+}}));
 
 app.use(logger('dev'));
 app.use(express.json());

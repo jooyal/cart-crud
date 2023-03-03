@@ -3,34 +3,38 @@
 			<div class="col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4 text-center">
 				
 
-				<form style="background-color: rgb(255, 255, 255);" class="rounded shadow p-5" method="post" action="/">
-					<h4 class="text-dark fw-bolder fs-4 mb-5">ADD NEW PRODUCT</h4>
+				<form style="background-color: rgb(255, 255, 255);" class="rounded shadow p-5" method="post" action="/edit-product">
+					<h4 class="text-dark fw-bolder fs-4 mb-5">EDIT PRODUCT</h4>
 					
-					<div class="text-danger" id="serverErrMsg">{{addProductError}}</div>
-					
+                                        
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingProductName" name="productName" placeholder="Product-Name" >
+                        <input type="text" class="form-control" id="floatingProductName" value="{{product.name}}" placeholder="Product-Name" disabled>
                         <label for="floatingProductName">Product Name</label>
                     </div>
                     <div class="form-floating mb-3">
-						<input type="number" class="form-control" id="floatingPhoneInput" name="shopMobile" oninput="validateSignupPhone()" placeholder="9876543210" >
+						<input type="number" class="form-control" id="floatingPhoneInput" value="{{product.phone}}"  placeholder="9876543210" disabled>
 						<label for="floatingPhoneInput">Phone No.</label>
-						<div class="text-danger" id="phoneNoErr"></div>
 					</div>
 					<div class="form-floating mb-3">
-						<input type="email" class="form-control" id="floatingEmailInput" name="shopEmail" oninput="validateSignupEmail()" placeholder="name@example.com" >
+						<input type="email" class="form-control" id="floatingEmailInput" value="{{product.email}}" placeholder="name@example.com" disabled>
 						<label for="floatingEmailInput">Email Address</label>
-						<div class="text-danger" id="emailErr"></div>
 					</div>
                     <div class="form-floating mb-3">
-						<input type="number" class="form-control" id="floatingAmountInput" name="productAmount" placeholder="0" >
+                        <input type="text" class="form-control" id="floatingProductColor" value="{{product.color}}" placeholder="Product-color" disabled>
+                        <label for="floatingProductColor">Product Color</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingProductSize" value="{{product.size}}" placeholder="Product-size" disabled>
+                        <label for="floatingProductSize">Product Size</label>
+                    </div>
+                    <div class="form-floating mb-3">
+						<input type="number" class="form-control" id="floatingAmountInput"  value="{{product.amount}}" name="productAmount" placeholder="0" >
 						<label for="floatingAmountInput">Amount</label>
-						<div class="text-danger" id="productAmountErr"></div>
 					</div>
-					
-					
+										
 					<button type="submit" id="signUpSubmit" class="btn btn-primary submit_btn w-100 mt-4">Continue</button> 
-
+                    
+                    <input style="visibility: hidden;" type="text" name="productId" value="{{product._id}}">
 				</form>
 			</div>
 		</div>
