@@ -48,5 +48,22 @@ module.exports = {
             console.log(error);
             throw new Error({message:error})
         }
+    },
+
+    updateProductAmount : async (productId, amount)=>{
+        try {
+            let response = await db.get().collection(PRODUCT_COLLECTION).updateOne({_id: new ObjectId(productId)},
+            {$set:{amount : parseFloat(amount)}});
+
+            if(response.modifiedCount === 1){
+                return({status:true, message:'Amount updated successfully!'})
+
+            }else {
+                throw new Error({status:false, message:'Could not update the amount'})
+            }
+            
+        } catch (error) {
+            throw new Error({message:error})
+        }
     }
 }

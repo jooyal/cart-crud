@@ -1,4 +1,4 @@
-const { addProduct, checkIfProductExist, fetchAllProducts, fetchProductDetails } = require('../model/product-helper.js')
+const { addProduct, checkIfProductExist, fetchAllProducts, fetchProductDetails, updateProductAmount } = require('../model/product-helper.js')
 
 const color = ['Blue', 'Pink', 'Yellow', 'Red']
 const size = ['Small', 'Medium', 'Large']
@@ -61,16 +61,31 @@ module.exports = {
         try {
             let productId = req.params.id
             let product = await fetchProductDetails(productId)
-            res.render('edit-product', { title: 'Edit Product | Ocean Technologies Task', product:product.data });
-                        
+            
+            if(product){
+                res.render('edit-product', { title: 'Edit Product | Ocean Technologies Task', product:product.data });
+
+            }else {
+                res.send({message:'product with product id not found'})
+            }
+
         } catch (error) {
             res.status(500).render('error', {error})
         }
     },
 
-    postEditProduct : (req, res)=>{
+    postEditProduct : async (req, res)=>{
         try {
-            productId = req.body.productId
+            let productId = req.body.productId
+            let newAmount = req.body.amount
+
+            let response = await updateProductAmount(productId, newAmount)
+
+            if(response.status){
+                res.redirect('/all-products')
+            }else {
+                res.send({message:'Could not update the amount for the product.'})
+            }
             
         } catch (error) {
             res.status(500).render('error', {error})
